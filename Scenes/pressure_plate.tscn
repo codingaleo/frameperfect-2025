@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckg2o532ppkd2"]
+
+[ext_resource type="Texture2D" uid="uid://bql7d8m0p4vik" path="res://Assets/brackeys_platformer_assets/sprites/plate_normal_down.png" id="1_i6fkm"]
+[ext_resource type="Texture2D" uid="uid://bwqseshjh1a1a" path="res://Assets/brackeys_platformer_assets/sprites/plate_normal_up.png" id="2_awgow"]
+[ext_resource type="Script" uid="uid://s7igo6cdp4pt" path="res://scripts/pressure_plate.gd" id="2_i6fkm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awgow"]
+atlas = ExtResource("1_i6fkm")
+region = Rect2(0, 8, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ydvm"]
+atlas = ExtResource("2_awgow")
+region = Rect2(0, 8, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ydvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awgow")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ydvm")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ataq"]
+size = Vector2(16, 9)
+
+[node name="pressure plate" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5ydvm")
+animation = &"up"
+script = ExtResource("2_i6fkm")
+toggle = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_4ataq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

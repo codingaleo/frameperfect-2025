@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://clp30u8vsv4ta"]
+
+[ext_resource type="Script" uid="uid://d2ijobtqddy0s" path="res://scripts/player.gd" id="1_08gl2"]
+[ext_resource type="FontFile" uid="uid://didrx4wroj1q5" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_a5hj0"]
+[ext_resource type="Texture2D" uid="uid://d4et8ps5ovfx5" path="res://Assets/Asset 3.png" id="3_fkybt"]
+[ext_resource type="Texture2D" uid="uid://bpfectjcutv54" path="res://Assets/Clocky-10.png" id="3_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://cojusel0u0fcw" path="res://Assets/Clocky-11.png" id="4_3smsa"]
+[ext_resource type="AudioStream" uid="uid://x2q7nf8of06d" path="res://Assets/brackeys_platformer_assets/sounds/jump.wav" id="4_hnd61"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c1khe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fkybt")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x3wgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3smsa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fkybt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xb21"]
+size = Vector2(22, 21)
+
+[sub_resource type="LabelSettings" id="LabelSettings_naflh"]
+font = ExtResource("3_a5hj0")
+font_size = 8
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gm4dl"]
+font = ExtResource("3_a5hj0")
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_08gl2")
+
+[node name="Player Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.96046e-08, -11)
+scale = Vector2(0.148148, 0.148148)
+sprite_frames = SubResource("SpriteFrames_c1khe")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_7xb21")
+
+[node name="Player Text" type="Label" parent="."]
+offset_left = -117.0
+offset_top = -42.0
+offset_right = 114.0
+offset_bottom = -19.0
+label_settings = SubResource("LabelSettings_naflh")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Buff Text" type="Label" parent="."]
+offset_top = -4.0
+offset_right = 16.0
+offset_bottom = 5.0
+scale = Vector2(0.6, 0.6)
+label_settings = SubResource("LabelSettings_gm4dl")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="jumpsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hnd61")
+volume_db = -3.748
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -9)
+offset = Vector2(0, -25)
+zoom = Vector2(5, 5)
+limit_bottom = 100
+position_smoothing_enabled = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

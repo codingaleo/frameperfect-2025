@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbwjf15kmao37"]
+
+[ext_resource type="Texture2D" uid="uid://dmfrctc4xwpsc" path="res://Assets/brackeys_platformer_assets/sprites/flag.png" id="1_ckhj5"]
+[ext_resource type="Script" uid="uid://6vm5hw6x40ry" path="res://scripts/Level End Flag.gd" id="2_1uycr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjnxc"]
+size = Vector2(16, 16)
+
+[node name="Level End Flag" type="Sprite2D"]
+texture = ExtResource("1_ckhj5")
+script = ExtResource("2_1uycr")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hjnxc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

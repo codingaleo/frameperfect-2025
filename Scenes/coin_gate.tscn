@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl8swh8dxefit"]
+
+[ext_resource type="Texture2D" uid="uid://du3ihixg3fj3" path="res://Assets/brackeys_platformer_assets/sprites/world_tileset.png" id="1_fsvx7"]
+[ext_resource type="Script" uid="uid://c6liyl4pkjae7" path="res://scripts/coin_gate.gd" id="1_qllu4"]
+[ext_resource type="Texture2D" uid="uid://bga38yr03ia8s" path="res://Assets/brackeys_platformer_assets/sprites/coin.png" id="1_xiowt"]
+[ext_resource type="FontFile" uid="uid://didrx4wroj1q5" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_cvqdp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th4y8"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pur6"]
+radius = 12.6889
+
+[sub_resource type="LabelSettings" id="LabelSettings_m15su"]
+font = ExtResource("4_cvqdp")
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Coin Gate" type="Node2D"]
+script = ExtResource("1_qllu4")
+
+[node name="Block" type="Sprite2D" parent="."]
+texture = ExtResource("1_fsvx7")
+region_enabled = true
+region_rect = Rect2(80, 32, 16, 16)
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_xiowt")
+region_enabled = true
+region_rect = Rect2(3, 3, 10, 10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_th4y8")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(5.52, 4.52)
+shape = SubResource("CircleShape2D_4pur6")
+
+[node name="Coin Amount Text" type="Label" parent="."]
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 11.0
+scale = Vector2(0.6, 0.6)
+label_settings = SubResource("LabelSettings_m15su")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
