@@ -1,17 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://clp30u8vsv4ta"]
+[gd_scene load_steps=21 format=3 uid="uid://clp30u8vsv4ta"]
 
 [ext_resource type="Script" uid="uid://d2ijobtqddy0s" path="res://scripts/player.gd" id="1_08gl2"]
+[ext_resource type="Shader" uid="uid://b2ebxf4yastbx" path="res://Scenes/abberation.gdshader" id="2_3smsa"]
 [ext_resource type="FontFile" uid="uid://didrx4wroj1q5" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_a5hj0"]
-[ext_resource type="Texture2D" uid="uid://d4et8ps5ovfx5" path="res://Assets/Asset 3.png" id="3_fkybt"]
-[ext_resource type="Texture2D" uid="uid://bpfectjcutv54" path="res://Assets/Clocky-10.png" id="3_x3wgy"]
-[ext_resource type="Texture2D" uid="uid://cojusel0u0fcw" path="res://Assets/Clocky-11.png" id="4_3smsa"]
+[ext_resource type="Texture2D" uid="uid://dixbsjey4odfb" path="res://Assets/Clocky/Clocky_Idle1.png" id="3_ukyrk"]
+[ext_resource type="Texture2D" uid="uid://b30tnningx7i0" path="res://Assets/Clocky/Clocky_Idle2.png" id="4_7dp3o"]
 [ext_resource type="AudioStream" uid="uid://x2q7nf8of06d" path="res://Assets/brackeys_platformer_assets/sounds/jump.wav" id="4_hnd61"]
+[ext_resource type="Texture2D" uid="uid://c8f58eegtnbak" path="res://Assets/Clocky/Clocky_Run1.png" id="5_h4iuc"]
+[ext_resource type="Texture2D" uid="uid://duuapwvi2tpaq" path="res://Assets/Clocky/Clocky_Run2.png" id="6_fd4e3"]
+[ext_resource type="Texture2D" uid="uid://b6cc4v1x5wa8n" path="res://Assets/Clocky/Clocky_Run3.png" id="7_qqcod"]
+[ext_resource type="Shader" uid="uid://bi0c68n04y27s" path="res://Scenes/grain.gdshader" id="8_8erm5"]
+[ext_resource type="Texture2D" uid="uid://c5vks6n15tn75" path="res://Assets/Clocky/Clocky_Run4.png" id="8_igrcy"]
+[ext_resource type="Texture2D" uid="uid://dasbieiscokiq" path="res://Assets/Clocky/Clocky_Run5.png" id="9_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://cavilkkae1ygy" path="res://Assets/Clocky/Clocky_Run6.png" id="10_l6n3p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
+shader = ExtResource("2_3smsa")
+shader_parameter/apply = true
+shader_parameter/amount = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_olqyp"]
+load_path = "res://.godot/imported/Asset 3.png-7aee8f019fb40b9f8fce6a499d246cf5.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c1khe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_fkybt")
+"texture": SubResource("CompressedTexture2D_olqyp")
 }],
 "loop": false,
 "name": &"hit",
@@ -19,13 +34,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_x3wgy")
+"texture": ExtResource("3_ukyrk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_x3wgy")
+"texture": ExtResource("3_ukyrk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_3smsa")
+"texture": ExtResource("4_7dp3o")
 }],
 "loop": true,
 "name": &"idle",
@@ -33,15 +48,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_fkybt")
+"texture": ExtResource("5_h4iuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fd4e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qqcod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_igrcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fs7ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l6n3p")
 }],
 "loop": true,
 "name": &"run",
-"speed": 7.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xb21"]
-size = Vector2(22, 21)
+size = Vector2(32, 31)
 
 [sub_resource type="LabelSettings" id="LabelSettings_naflh"]
 font = ExtResource("3_a5hj0")
@@ -56,6 +86,11 @@ font_color = Color(1, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1ek2"]
+shader = ExtResource("8_8erm5")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 1.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
@@ -63,14 +98,16 @@ collision_mask = 3
 script = ExtResource("1_08gl2")
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(5.96046e-08, -11)
-scale = Vector2(0.148148, 0.148148)
+material = SubResource("ShaderMaterial_8erm5")
+position = Vector2(0, -14.5)
+scale = Vector2(0.203704, 0.203704)
 sprite_frames = SubResource("SpriteFrames_c1khe")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.00274874
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10.5)
+position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_7xb21")
 
 [node name="Player Text" type="Label" parent="."]
@@ -95,11 +132,20 @@ label_settings = SubResource("LabelSettings_gm4dl")
 stream = ExtResource("4_hnd61")
 volume_db = -3.748
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_f1ek2")
+offset_left = -129.0
+offset_top = -107.0
+offset_right = 127.0
+offset_bottom = 41.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
 offset = Vector2(0, -25)
-zoom = Vector2(5, 5)
-limit_bottom = 100
+zoom = Vector2(4, 4)
+limit_top = -120
+limit_bottom = -120
 position_smoothing_enabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

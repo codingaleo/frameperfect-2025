@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4et8ps5ovfx5"
-path="res://.godot/imported/Asset 3.png-7aee8f019fb40b9f8fce6a499d246cf5.ctex"
+uid="uid://cavilkkae1ygy"
+path="res://.godot/imported/Clocky_Run6.png-e5843b7e1115ad8ea43299cae2065588.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Asset 3.png"
-dest_files=["res://.godot/imported/Asset 3.png-7aee8f019fb40b9f8fce6a499d246cf5.ctex"]
+source_file="res://Assets/Clocky/Clocky_Run6.png"
+dest_files=["res://.godot/imported/Clocky_Run6.png-e5843b7e1115ad8ea43299cae2065588.ctex"]
 
 [params]
 
