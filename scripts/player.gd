@@ -89,9 +89,9 @@ func handle_idle(direction, is_jumping, is_dashing, delta):
 func handle_run(direction, is_jumping, is_dashing, delta):
 	# Apply movement
 	if direction != 0:
-		velocity.x = move_toward(velocity.x, direction * speed, speed * 4 * delta)
+		velocity.x = move_toward(velocity.x, direction * speed, speed * 6 * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed * 8 * delta)
+		velocity.x = move_toward(velocity.x, 0, speed * 12 * delta)
 	
 	# State transitions
 	if abs(velocity.x) < 10 and direction == 0:

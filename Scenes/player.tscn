@@ -158,13 +158,15 @@ volume_db = -3.748
 position = Vector2(0, -9)
 offset = Vector2(0, -25)
 zoom = Vector2(4, 4)
+limit_left = -245
 limit_top = -220
 limit_bottom = -220
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 drag_horizontal_enabled = true
-drag_left_margin = 0.05
+drag_left_margin = 0.0
 drag_top_margin = 0.0
-drag_right_margin = 0.05
+drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
