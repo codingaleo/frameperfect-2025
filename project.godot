@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="FPSF-Invite-Game"
+config/name="Game Invitation | Frame Perfect Speedfest 2025"
+config/description="Frame Perfect Speedfest 2025"
 run/main_scene="uid://x8shrml3ntce"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

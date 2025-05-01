@@ -173,8 +173,8 @@ drag_bottom_margin = 0.0
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
 material = SubResource("ShaderMaterial_f1ek2")
 offset_left = -461.0
-offset_top = -374.0
+offset_top = -294.0
 offset_right = 463.0
-offset_bottom = 160.0
+offset_bottom = 240.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
