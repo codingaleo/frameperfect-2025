@@ -81,6 +81,8 @@ func handle_idle(direction, is_jumping, is_dashing, delta):
 	# State transitions
 	if direction != 0:
 		current_state = MovementState.RUN
+	if !is_on_floor():
+		current_state = MovementState.JUMP
 	if is_jumping and is_on_floor():
 		perform_jump()
 	if is_dashing and can_dash:
