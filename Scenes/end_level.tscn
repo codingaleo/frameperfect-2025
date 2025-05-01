@@ -492,6 +492,7 @@ scale = Vector2(0.152931, 0.152931)
 texture = ExtResource("7_nq3xb")
 
 [node name="TileMapFront" type="TileMap" parent="."]
+visible = false
 position = Vector2(9, 0)
 tile_set = SubResource("TileSet_ft8i8")
 format = 2
