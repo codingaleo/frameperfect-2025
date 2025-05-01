@@ -486,8 +486,8 @@ font_size = 8
 
 [node name="Player" parent="." instance=ExtResource("1_ixvbt")]
 position = Vector2(-55, -64)
-speed = 140.0
-jump_velocity = -310.0
+speed = 150.0
+jump_velocity = -300.0
 
 [node name="TileMapBack" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ft8i8")

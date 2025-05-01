@@ -9,10 +9,10 @@ enum MovementState {
 
 # Movement parameters
 @export var speed = 400.0                # Base run speed
-@export var jump_velocity = -500.0       # More powerful jump for Cuphead feel
-@export var dash_speed = 800.0           # Dash speed
-@export var dash_duration = 0.15         # How long dash lasts
-@export var dash_cooldown = 0.3          # Time between dashes
+@export var jump_velocity = -4000.0       # More powerful jump for Cuphead feel
+@export var dash_speed = 400.0           # Dash speed
+@export var dash_duration = 0.25         # How long dash lasts
+@export var dash_cooldown = 1.0          # Time between dashes
 @export var air_control = 4.0            # How much control you have in air
 @export var dead : bool = false
 @export var coins : int = 0
@@ -123,7 +123,7 @@ func handle_dash(delta):
 
 func perform_jump():
 	velocity.y = jump_velocity * 1.25
-	#current_state = MovementState.JUMP
+	current_state = MovementState.JUMP
 	jumpsfx.play()
 
 func perform_dash(direction):

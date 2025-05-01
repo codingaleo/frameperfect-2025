@@ -15,6 +15,13 @@ run/main_scene="uid://x8shrml3ntce"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [physics]
 
 common/physics_ticks_per_second=240

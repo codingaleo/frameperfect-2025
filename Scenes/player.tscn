@@ -1,17 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://clp30u8vsv4ta"]
+[gd_scene load_steps=26 format=3 uid="uid://clp30u8vsv4ta"]
 
 [ext_resource type="Script" uid="uid://d2ijobtqddy0s" path="res://scripts/player.gd" id="1_08gl2"]
 [ext_resource type="Shader" uid="uid://b2ebxf4yastbx" path="res://Assets/abberation.gdshader" id="2_3smsa"]
 [ext_resource type="FontFile" uid="uid://didrx4wroj1q5" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_a5hj0"]
+[ext_resource type="Texture2D" uid="uid://diwj10lbt6gaa" path="res://Assets/Clocky/Clocky_Dash1.png" id="3_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://dixbsjey4odfb" path="res://Assets/Clocky/Clocky_Idle1.png" id="3_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://b30tnningx7i0" path="res://Assets/Clocky/Clocky_Idle2.png" id="4_7dp3o"]
 [ext_resource type="AudioStream" uid="uid://x2q7nf8of06d" path="res://Assets/brackeys_platformer_assets/sounds/jump.wav" id="4_hnd61"]
 [ext_resource type="Texture2D" uid="uid://c8f58eegtnbak" path="res://Assets/Clocky/Clocky_Run1.png" id="5_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://duuapwvi2tpaq" path="res://Assets/Clocky/Clocky_Run2.png" id="6_fd4e3"]
+[ext_resource type="Texture2D" uid="uid://bdc1sl8yeuaye" path="res://Assets/Clocky/Clocky_Jump1.png" id="6_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://cyr8f3y7a7lok" path="res://Assets/Clocky/Clocky_Jump2.png" id="7_olqyp"]
 [ext_resource type="Texture2D" uid="uid://b6cc4v1x5wa8n" path="res://Assets/Clocky/Clocky_Run3.png" id="7_qqcod"]
 [ext_resource type="Shader" uid="uid://bi0c68n04y27s" path="res://Assets/grain.gdshader" id="8_8erm5"]
 [ext_resource type="Texture2D" uid="uid://c5vks6n15tn75" path="res://Assets/Clocky/Clocky_Run4.png" id="8_igrcy"]
+[ext_resource type="Texture2D" uid="uid://dsifpv8u4t6sh" path="res://Assets/Clocky/Clocky_Jump3.png" id="8_wpjfl"]
+[ext_resource type="Texture2D" uid="uid://cyjnfyl3olxrs" path="res://Assets/Clocky/Clocky_Jump4.png" id="9_bi64h"]
 [ext_resource type="Texture2D" uid="uid://dasbieiscokiq" path="res://Assets/Clocky/Clocky_Run5.png" id="9_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://bniwj0q6hu2er" path="res://Assets/Clocky/Clocky_Jump5.png" id="10_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://cavilkkae1ygy" path="res://Assets/Clocky/Clocky_Run6.png" id="10_l6n3p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
@@ -23,7 +29,7 @@ shader_parameter/amount = 1.5
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_l6n3p")
+"texture": ExtResource("3_fs7ks")
 }],
 "loop": true,
 "name": &"dash",
@@ -45,11 +51,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ukyrk")
+"texture": ExtResource("6_l6n3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_olqyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wpjfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bi64h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2ijsl")
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,7 +94,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xb21"]
-size = Vector2(30, 30)
+size = Vector2(26, 29)
 
 [sub_resource type="LabelSettings" id="LabelSettings_naflh"]
 font = ExtResource("3_a5hj0")
@@ -101,9 +119,6 @@ z_index = 5
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_08gl2")
-jump_velocity = -4000.0
-dash_duration = 0.05
-dash_cooldown = 1.0
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_8erm5")
@@ -114,7 +129,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_7xb21")
 
 [node name="Player Text" type="Label" parent="."]
@@ -143,8 +158,8 @@ volume_db = -3.748
 position = Vector2(0, -9)
 offset = Vector2(0, -25)
 zoom = Vector2(4, 4)
-limit_top = -240
-limit_bottom = -240
+limit_top = -220
+limit_bottom = -220
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_left_margin = 0.05
