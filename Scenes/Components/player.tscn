@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://clp30u8vsv4ta"]
+[gd_scene load_steps=25 format=3 uid="uid://clp30u8vsv4ta"]
 
-[ext_resource type="Script" uid="uid://d2ijobtqddy0s" path="res://scripts/player.gd" id="1_08gl2"]
-[ext_resource type="Shader" uid="uid://b2ebxf4yastbx" path="res://Assets/abberation.gdshader" id="2_3smsa"]
+[ext_resource type="Script" uid="uid://d2ijobtqddy0s" path="res://Scripts/player.gd" id="1_08gl2"]
 [ext_resource type="FontFile" uid="uid://didrx4wroj1q5" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_a5hj0"]
 [ext_resource type="Texture2D" uid="uid://diwj10lbt6gaa" path="res://Assets/Clocky/Clocky_Dash1.png" id="3_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://dixbsjey4odfb" path="res://Assets/Clocky/Clocky_Idle1.png" id="3_ukyrk"]
@@ -19,11 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dasbieiscokiq" path="res://Assets/Clocky/Clocky_Run5.png" id="9_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bniwj0q6hu2er" path="res://Assets/Clocky/Clocky_Jump5.png" id="10_2ijsl"]
 [ext_resource type="Texture2D" uid="uid://cavilkkae1ygy" path="res://Assets/Clocky/Clocky_Run6.png" id="10_l6n3p"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8erm5"]
-shader = ExtResource("2_3smsa")
-shader_parameter/apply = true
-shader_parameter/amount = 1.5
+[ext_resource type="AudioStream" uid="uid://5mxao34bhj5g" path="res://Assets/brackeys_platformer_assets/sounds/power_up.wav" id="18_i2f80"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c1khe"]
 animations = [{
@@ -31,7 +26,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_fs7ks")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash",
 "speed": 5.0
 }, {
@@ -112,7 +107,9 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f1ek2"]
 shader = ExtResource("8_8erm5")
 shader_parameter/grain_amount = 0.05
-shader_parameter/grain_size = 1.0
+shader_parameter/grain_size = 2.0
+shader_parameter/enable_color_distortion = true
+shader_parameter/distortion_strength = 0.04
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 z_index = 5
@@ -121,7 +118,6 @@ collision_mask = 3
 script = ExtResource("1_08gl2")
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_8erm5")
 position = Vector2(0, -16)
 scale = Vector2(0.277006, 0.277006)
 sprite_frames = SubResource("SpriteFrames_c1khe")
@@ -152,14 +148,19 @@ label_settings = SubResource("LabelSettings_gm4dl")
 
 [node name="jumpsfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_hnd61")
-volume_db = -3.748
+volume_db = -15.0
+
+[node name="dashsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_i2f80")
+volume_db = -15.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
 offset = Vector2(0, -25)
 zoom = Vector2(4, 4)
-limit_left = -245
+limit_left = -250
 limit_top = -220
+limit_right = 1520
 limit_bottom = -220
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
@@ -171,9 +172,9 @@ drag_bottom_margin = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
 material = SubResource("ShaderMaterial_f1ek2")
-offset_left = -323.0
-offset_top = -222.0
-offset_right = 324.0
-offset_bottom = 152.0
+offset_left = -461.0
+offset_top = -374.0
+offset_right = 463.0
+offset_bottom = 160.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

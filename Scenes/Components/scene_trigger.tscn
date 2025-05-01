@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1oicbyj7t7k7"]
+
+[ext_resource type="Script" uid="uid://d00oap6wyk0nb" path="res://Scripts/scene_trigger.gd" id="1_mgjgu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjnxc"]
+size = Vector2(94, 16)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_mgjgu")
+target_scene = "res://Scenes/end_level.tscn"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hjnxc")

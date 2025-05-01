@@ -136,7 +136,7 @@ func perform_dash(direction):
 	can_dash = false
 	dash_timer = dash_duration
 	velocity = dash_direction * dash_speed
-	#dashsfx.play() # Uncomment
+	dashsfx.play()
 	# Start dash cooldown timer
 	get_tree().create_timer(dash_cooldown).connect("timeout", func(): can_dash = true)
 
