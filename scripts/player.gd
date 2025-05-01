@@ -96,6 +96,8 @@ func handle_run(direction, is_jumping, is_dashing, delta):
 	# State transitions
 	if abs(velocity.x) < 10 and direction == 0:
 		current_state = MovementState.IDLE
+	if !is_on_floor():
+		current_state = MovementState.JUMP
 	if is_jumping and is_on_floor():
 		perform_jump()
 	if is_dashing and can_dash:
@@ -114,6 +116,7 @@ func handle_jump(direction, is_jumping, is_dashing, delta):
 			current_state = MovementState.RUN
 		else:
 			current_state = MovementState.IDLE
+		
 	if is_dashing and can_dash:
 		perform_dash(direction)
 
@@ -154,7 +157,7 @@ func end_dash():
 func update_animations():
 	match current_state:
 		MovementState.IDLE:
-			if player_sprite.animation != "idle":
+			if player_sprite.animation != "idle": 
 				player_sprite.play("idle")
 		MovementState.RUN:
 			if player_sprite.animation != "run":

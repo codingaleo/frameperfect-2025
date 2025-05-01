@@ -28,7 +28,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -121,7 +121,7 @@ script = ExtResource("1_08gl2")
 position = Vector2(0, -16)
 scale = Vector2(0.277006, 0.277006)
 sprite_frames = SubResource("SpriteFrames_c1khe")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
